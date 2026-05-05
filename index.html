@@ -2,57 +2,125 @@
 <html lang="lv">
 <head>
     <meta charset="UTF-8">
-    <title>Nāves ēnā</title>
+    <title>Rūdolfs Blaumanis</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f4f8;
             margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background: linear-gradient(to right, #ece9e6, #ffffff);
+            color: #333;
         }
+
+        header {
+            background: #4a4a4a;
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
         .container {
-            width: 60%;
-            margin: 50px auto;
+            max-width: 900px;
+            margin: 30px auto;
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
-        h1 {
-            color: #2c3e50;
-        }
+
         h2 {
             color: #555;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 5px;
         }
+
         p {
-            line-height: 1.6;
+            line-height: 1.7;
         }
-        .kods {
-            margin-top: 20px;
+
+        .highlight {
+            background: #f0f0f0;
+            padding: 15px;
+            border-left: 5px solid #888;
+            margin: 20px 0;
+            font-style: italic;
+        }
+
+        .works {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .work {
+            background: #fafafa;
             padding: 10px;
-            background-color: #eaf2ff;
-            border-left: 5px solid #3498db;
+            border-radius: 8px;
+            border: 1px solid #eee;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+            .works {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>Nāves ēnā</h1>
-    <h2>Autors: Rūdolfs Blaumanis</h2>
+<header>
+    <h1>Rūdolfs Blaumanis</h1>
+    <p>Latviešu rakstnieks un dramaturgs</p>
+</header>
 
+<div class="container">
+    <h2>Biogrāfija</h2>
     <p>
-        Stāsts par zvejniekiem, kuri nonāk uz ledus gabala un cīnās par izdzīvošanu.
-        Darbs parāda cilvēku raksturus un emocijas bīstamā situācijā.
+        Rūdolfs Blaumanis (1863–1908) bija viens no izcilākajiem latviešu rakstniekiem.
+        Viņš rakstīja stāstus, noveles un lugas, kas atspoguļo latviešu dzīvi,
+        attiecības un sabiedrības problēmas.
     </p>
 
-    <div class="kods">
-        <h3>Kods (secinājums)</h3>
-        <p>
-            Grūtībās atklājas cilvēka patiesā daba, un dzīvība ir vislielākā vērtība.
-        </p>
+    <h2>Literārais stils</h2>
+    <p>
+        Blaumaņa darbi izceļas ar reālismu, dziļu psiholoģiju un spilgtiem tēliem.
+        Viņš bieži rakstīja par lauku cilvēku dzīvi, mīlestību, morālām izvēlēm
+        un traģēdiju.
+    </p>
+
+    <div class="highlight">
+        "Cilvēka liktenis bieži ir viņa paša rokās."
     </div>
+
+    <h2>Slavenākie darbi</h2>
+    <div class="works">
+        <div class="work">"Skroderdienas Silmačos"</div>
+        <div class="work">"Indrāni"</div>
+        <div class="work">"Purva bridējs"</div>
+        <div class="work">"Nāves ēnā"</div>
+    </div>
+
+    <h2>Nozīme</h2>
+    <p>
+        Rūdolfs Blaumanis ir būtiska latviešu literatūras daļa.
+        Viņa darbi joprojām tiek lasīti, iestudēti teātros un analizēti skolās.
+    </p>
 </div>
+
+<footer>
+    © 2026 Latviešu literatūra
+</footer>
 
 </body>
 </html>
