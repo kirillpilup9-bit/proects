@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rūdolfs Blaumanis — Velniņi</title>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to bottom, #2c1e12, #4a2f1b);
+    font-family: Georgia, serif;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    color: #2b2b2b;
+}
+
+.book-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.book {
+    width: 1000px;
+    height: 650px;
+    position: relative;
+    display: flex;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+    border-radius: 12px;
+    overflow: hidden;
+    background: #f9f1d9;
+}
+
+.page {
+    width: 50%;
+    height: 100%;
+    padding: 40px;
+    overflow-y: auto;
+    background: #f9f1d9;
+    border: 1px solid #d8c9a7;
+    line-height: 1.7;
+}
+
+.left {
+    border-right: 3px solid #c7b18b;
+}
+
+.right {
+    border-left: 3px solid #c7b18b;
+}
+
+h1, h2, h3 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #5c4033;
+}
+
+h1 {
+    font-size: 38px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+h3 {
+    font-size: 22px;
+}
+
+p {
+    margin-bottom: 15px;
+    font-size: 17px;
+}
+
+ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+}
+
+li {
+    margin-bottom: 10px;
+}
+
+.quote {
+    background: rgba(92,64,51,0.1);
+    border-left: 5px solid #5c4033;
+    padding: 15px;
+    margin: 20px 0;
+    font-style: italic;
+}
+
+.fact-box {
+    background: #efe2c0;
+    padding: 15px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.controls {
+    display: flex;
+    gap: 20px;
+}
+
+button {
+    background: #5c4033;
+    color: white;
+    border: none;
+    padding: 14px 22px;
+    font-size: 18px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #7a5544;
+    transform: scale(1.05);
+}
+
+.page-number {
+    text-align: center;
+    margin-top: 20px;
+    color: #6b4a3b;
+    font-weight: bold;
+}
+
+.cover {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    text-align: center;
+}
+
+.cover p {
+    font-size: 20px;
+}
+
+@media (max-width: 1050px) {
+    .book {
+        width: 95%;
+        height: auto;
+        flex-direction: column;
+    }
+
+    .page {
+        width: 100%;
+        height: auto;
+    }
+}
+</style>
+</head>
+<body>
+
+<div class="book-container">
+    <div class="book" id="book"></div>
+
+    <div class="controls">
+        <button onclick="prevPage()">◀ Iepriekšējā</button>
+        <button onclick="nextPage()">Nākamā ▶</button>
+    </div>
+</div>
+
+<script>
+const pages = [
+`
+<div class="cover">
+    <h1>Rūdolfs Blaumanis</h1>
+    <h2>"Velniņi"</h2>
+    <p>Interaktīva literārā grāmata</p>
+    <div class="fact-box">
+        <p><strong>Autors:</strong> Rūdolfs Blaumanis</p>
+        <p><strong>Žanrs:</strong> Pasaka</p>
+        <p><strong>Darba tēma:</strong> Nerātnība, piedzīvojumi un atbildība</p>
+    </div>
+</div>
+`,
+
+`
+<h2>Ziņas par autoru</h2>
+<p><strong>Rūdolfs Blaumanis</strong> bija viens no ievērojamākajiem latviešu rakstniekiem un dramaturgiem.</p>
+<p>Viņš dzimis 1863. gada 1. janvārī Ērgļos un rakstīja stāstus, noveles, lugas un pasakas.</p>
+<p>Blaumanis savos darbos bieži attēloja latviešu zemnieku dzīvi, sadzīvi un cilvēku raksturus.</p>
+
+<div class="fact-box">
+<h3>Kultūras fakti</h3>
+<ul>
+<li>Rūdolfs Blaumanis tiek uzskatīts par latviešu literatūras klasiķi.</li>
+<li>Viņa lugas joprojām tiek iestudētas Latvijas teātros.</li>
+<li>Rakstnieka darbi ir iekļauti skolu programmās.</li>
+</ul>
+</div>
+`,
+
+`
+<h2>Vide un laikmets</h2>
+<p>Darbs "Velniņi" ir sarakstīts laikā, kad latviešu literatūrā populāras bija pasakas un stāsti ar pamācošu nozīmi.</p>
+<p>Pasakas vide ir fantāzijas pasaule — elle un cilvēku pasaule.</p>
+<p>Autors izmanto humoru un piedzīvojumus, lai parādītu, kā nerātnība var novest pie problēmām.</p>
+
+<div class="quote">
+"Pasaule velniņiem likās pilna brīnumu un piedzīvojumu."
+</div>
+`,
+
+`
+<h2>Varoņu raksturojums</h2>
+<h3>Galvenie varoņi — velniņi</h3>
+<ul>
+<li><strong>Nerātni:</strong> viņi nepārtraukti dara blēņas un nepaklausa noteikumiem.</li>
+<li><strong>Zinātkāri:</strong> velniņi vēlas iepazīt cilvēku pasauli.</li>
+<li><strong>Bailīgi:</strong> sastopoties ar grūtībām, viņi nobīstas un vēlas atgriezties mājās.</li>
+</ul>
+
+<div class="fact-box">
+<p><strong>Svarīga doma:</strong> cilvēks bieži novērtē mājas tikai tad, kad nonāk nepatikšanās.</p>
+</div>
+`,
+
+`
+<h2>3 atziņas par darbu</h2>
+<ol>
+<li>Ziņkārība var novest pie piedzīvojumiem, bet arī pie problēmām.</li>
+<li>Nerātnība ne vienmēr beidzas jautri.</li>
+<li>Katram ir jāuzņemas atbildība par savu rīcību.</li>
+</ol>
+
+<div class="quote">
+"Pat visdrošākajiem reizēm kļūst bail."
+</div>
+`,
+
+`
+<h2>Kultūras fakti par darbu</h2>
+<ul>
+<li>"Velniņi" ir viena no pazīstamākajām latviešu pasakām.</li>
+<li>Darbs māca bērniem par labo un slikto rīcību.</li>
+<li>Latviešu folklorā velni bieži tiek attēloti kā viltīgi, bet reizēm arī komiski tēli.</li>
+</ul>
+
+<div class="fact-box">
+<h3>Interesants fakts</h3>
+<p>Latviešu tautas pasakās velns bieži tiek apmānīts vai pats nonāk smieklīgās situācijās.</p>
+</div>
+`,
+
+`
+<h2>Īss sižets</h2>
+<p>Divi velniņi dzīvo ellē un sapņo nokļūt cilvēku pasaulē.</p>
+<p>Kādu dienu viņi izmanto iespēju aizbēgt un sāk iepazīt apkārtējo pasauli.</p>
+<p>Sākumā viss šķiet interesants un jautrs, taču drīz viņi nonāk nepatikšanās.</p>
+<p>Beigās velniņi saprot, ka mājās tomēr ir visdrošāk.</p>
+`,
+
+`
+<h2>Secinājums</h2>
+<p>Rūdolfa Blaumaņa "Velniņi" ir pamācoša un interesanta pasaka, kas māca bērniem atbildību un godīgumu.</p>
+<p>Darbs ir pilns ar humoru, fantāziju un spilgtiem tēliem.</p>
+
+<div class="quote">
+"Katra pieredze māca kaut ko jaunu."
+</div>
+
+<h3>Paldies par uzmanību!</h3>
+<div class="page-number">Beigas</div>
+`
+];
+
+let currentPage = 0;
+
+function renderBook() {
+    const book = document.getElementById('book');
+    book.innerHTML = '';
+
+    const leftPage = document.createElement('div');
+    leftPage.className = 'page left';
+    leftPage.innerHTML = pages[currentPage] || '<p>Nav vairāk lapu.</p>';
+
+    const rightPage = document.createElement('div');
+    rightPage.className = 'page right';
+    rightPage.innerHTML = pages[currentPage + 1] || '<p>Grāmatas beigas.</p>';
+
+    book.appendChild(leftPage);
+    book.appendChild(rightPage);
+}
+
+function nextPage() {
+    if(currentPage + 2 < pages.length) {
+        currentPage += 2;
+        renderBook();
+    }
+}
+
+function prevPage() {
+    if(currentPage - 2 >= 0) {
+        currentPage -= 2;
+        renderBook();
+    }
+}
+
+renderBook();
+</script>
+
+</body>
+</html>
