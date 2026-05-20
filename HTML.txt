@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rūdolfs Blaumanis</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <h1>Rūdolfs Blaumanis</h1>
+        <p>Latviešu rakstnieks, dramaturgs un reālisma meistars</p>
+    </header>
+
+    <section class="bio">
+        <h2>Biogrāfija</h2>
+        <p>
+            Rūdolfs Blaumanis dzimis 1863. gadā Ērgļos.
+            Viņš ir viens no ievērojamākajiem latviešu rakstniekiem,
+            pazīstams ar lugām, novelēm un stāstiem.
+        </p>
+    </section>
+
+    <section class="works">
+        <h2>Slavenākie darbi</h2>
+
+        <div class="card">
+            <h3>Purva bridējs</h3>
+            <p>Mīlestības un izvēļu stāsts Latvijas laukos.</p>
+        </div>
+
+        <div class="card">
+            <h3>Skroderdienas Silmačos</h3>
+            <p>Populāra latviešu komēdija par Jāņu laiku.</p>
+        </div>
+
+        <div class="card">
+            <h3>Nāves ēnā</h3>
+            <p>Psiholoģiska novele par izdzīvošanu un cilvēka raksturu.</p>
+        </div>
+    </section>
+
+    <button onclick="showQuote()">Parādīt citātu</button>
+
+    <p id="quote"></p>
+
+    <footer>
+        <p>Izveidoja GitHub projektam © 2026</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
