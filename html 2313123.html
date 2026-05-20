@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<title>Rūdolfs Blaumanis — Velniņi</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: #2c1e12;
+        font-family: Georgia, serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        overflow: hidden;
+    }
+    .book {
+        width: 900px;
+        height: 600px;
+        position: relative;
+        perspective: 2500px;
+        box-shadow: 0 20px 40px rgba(0,0,0,0.8);
+    }
+    .page {
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        background: #f9f1d9;
+        box-shadow: inset 0 0 30px rgba(0,0,0,0.2);
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding: 40px 30px;
+        box-sizing: border-box;
+        font-size: 16px;
+        line-height: 1.6;
+        color: #333;
+        border: 1px solid #ddd;
+    }
+    .left { 
+        left: 0; 
+        border-radius: 10px 0 0 10px;
+        transform-origin: right center;
+    }
+    .right { 
+        right: 0; 
+        border-radius: 0 10px 10px 0;
+        transform-origin: left center;
+    }
+    .title {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 30px;
+    }
+    button {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: #5c4033;
+        color: white;
+        border: none;
+        padding: 15px 20px;
+        cursor: pointer;
+        z-index: 10;
+        font-size: 18px;
+    }
+    .prev { left: 20px; }
+    .next { right: 20px; }
+</style>
+</head>
+<body>
+
+<div class="book" id="book">
+    <!-- Lapas tiks pievienotas ar JS -->
+</div>
+
+<button class="prev" onclick="prevPage()">◀ Iepriekšējā</button>
+<button class="next" onclick="nextPage()">Nākamā ▶</button>
+
+<script>
+// Teksts no "Velniņi" (sadalīts lapās)
+const content = [
+    `<div class="title">Rūdolfs Blaumanis<br>VELNIŅI</div>
+    <p>Reiz ellē dzīvoja divi nerātni velniņi...</p>
+    <p>(Šeit sākas pasaka)</p>`,
+
+    `<p>Netālu no elles vārtiem uz ugunīgas pļavas savu brīvo laiku ar visādām nerātnībām pavadīja un jau dažu labu reizi bija mēģinājuši izbēgt. Kādu dienu viņi pamanīja, ka vārtu sargs ir iesnaudies.</p>`,
+
+    `<p>Viņi pieskrēja pie vārtiem, uzkāpa viens otram uz pleciem, atslēdza vārtus un ātri izspraucās laukā...</p>
+    <p>Pasaule viņiem likās brīnišķīga — zaļa zāle, puķes, putni.</p>`,
+
+    `<p>Bet tad pienāca nakts un kļuva auksti. Velniņi meklēja siltumu un nonāca rijā, kur saimniece bija salikusi sviestu krāsnī...</p>`,
+
+    `<p>Viņi sāka darīt nedarbus — salēja sviestu grāvī, piesēja sikspārņus utt., bet viss beidzās ar to, ka viņi paši nobijās un atgriezās ellē.</p>
+    <p style="text-align:center; margin-top:50px;"><strong>Beigas</strong></p>`
+    // Vari pievienot vairāk lapu ar pilnu tekstu
+];
+
+let currentPage = 0;
+
+function renderBook() {
+    const book = document.getElementById('book');
+    book.innerHTML = '';
+
+    const left = document.createElement('div');
+    left.className = 'page left';
+    left.innerHTML = content[currentPage] || '<p style="color:#999;">Nav vairāk lapu</p>';
+
+    const right = document.createElement('div');
+    right.className = 'page right';
+    right.innerHTML = content[currentPage + 1] || '<p style="color:#999;">Grāmatas beigas</p>';
+
+    book.appendChild(left);
+    book.appendChild(right);
+}
+
+function nextPage() {
+    if (currentPage + 2 < content.length) {
+        currentPage += 2;
+        renderBook();
+    }
+}
+
+function prevPage() {
+    if (currentPage > 0) {
+        currentPage -= 2;
+        renderBook();
+    }
+}
+
+// Sākotnējā renderēšana
+renderBook();
+</script>
+
+</body>
+</html>
